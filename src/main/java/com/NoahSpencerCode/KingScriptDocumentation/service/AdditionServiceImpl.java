@@ -1,4 +1,28 @@
 package com.NoahSpencerCode.KingScriptDocumentation.service;
 
-public class AdditionServiceImpl {
+import com.NoahSpencerCode.KingScriptDocumentation.model.Addition;
+import com.NoahSpencerCode.KingScriptDocumentation.repository.AdditionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AdditionServiceImpl implements AdditionService {
+
+    @Autowired
+    private AdditionRepository additionRepository;
+
+    @Override
+    public Addition saveAddition(Addition addition) {
+
+        return additionRepository.save(addition);
+    }
+
+    @Override
+    public List<Addition> getAllAdditions() {
+        return additionRepository.findAll();
+    }
 }
+
+
