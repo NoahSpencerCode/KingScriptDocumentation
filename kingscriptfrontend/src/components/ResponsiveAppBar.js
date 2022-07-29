@@ -35,11 +35,12 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+    <AppBar position="static" style={{backgroundColor: "black"}}>
+      <Container maxWidth="xl" >
+        <Toolbar disableGutters >
+          
           <Typography
             variant="h6"
             noWrap
@@ -51,11 +52,13 @@ const ResponsiveAppBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
+            style={{color:'purple'}}
+
           >
-            LOGO
+            KingScript
+            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
