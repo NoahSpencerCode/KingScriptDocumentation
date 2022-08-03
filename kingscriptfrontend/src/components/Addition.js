@@ -1,60 +1,77 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Container, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
-
+import { Container ,Paper,Button} from '@mui/material';
 
 
 export default function Addition() {
-      
-    const CssTextField = styled(TextField)({
-        '& label.Mui-focused': {
-          color: 'purple',
-          textColor: 'white'
-        },
-        '& .MuiInput-underline:after': {
-          borderBottomColor: 'purple',
-        },
-        '& .MuiOutlinedInput-root': {
-          '& fieldset': {
-            borderColor: 'rgb(200,200,200)',
-            textColor: 'white',
-            
-          },
-          '&:hover fieldset': {
-            borderColor: 'purple',
-          },
-          '&.Mui-focused fieldset': {
-            borderColor: 'purple',
-          },
-        },
-      });
+    const paperStyle={padding:'50px 20px', width:600,margin:"20px auto"}
+    const[title,setTitle]=useState('')
+    const[body,setBody]=useState('')
+    const[additions,setAdditions]=useState([])
 
+  const handleClick=(e)=>{
+    e.preventDefault()
+    const addition={title,body}
+    console.log(addition)
+    fetch("http://localhost:8080/addition/add",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(addition)
 
-    const paperStyle={padding: '50px 20px', width: 600, margin: '20px auto', backgroundColor: 'rgb(26, 35, 40)'}
+  }).then(()=>{
+    console.log("New Addition added")
+  })
+}
 
+useEffect(()=>{
+  fetch("http://localhost:8080/addition/getAll")
+  .then(res=>res.json())
+  .then((result)=>{
+    setAdditions(result);
+  }
+)
+},[])
   return (
+
     <Container>
         <Paper elevation={3} style={paperStyle}>
-        <Box
-            component="form"
-            sx={{
-                '& > :not(style)': { m: 1},
-            }}
-            noValidate
-            autoComplete="off"
-        >
-            <CssTextField id="outlined-basic" label="Title" variant="outlined" />
-            
-            <CssTextField id="outlined-basic" label="Body" variant="outlined" />
-            
-        </Box>
+            <h1 style={{color:"blue"}}><u>Add Addition</u></h1>
+
+    <form noValidate autoComplete="off">
+    
+      <TextField id="outlined-basic" label="Title" variant="outlined" fullWidth 
+      value={title}
+      onChange={(e)=>setTitle(e.target.value)}
+      />
+      <TextField id="outlined-basic" label="Body" variant="outlined" fullWidth
+      value={body}
+      onChange={(e)=>setBody(e.target.value)}
+      />
+      <Button variant="contained" color="secondary" onClick={handleClick}>
+  Submit
+</Button>
+    </form>
+   
+    </Paper>
+    <h1>Additions</h1>
+
+    <Paper elevation={3} style={paperStyle}>
+
+      {additions.map(addition=>(
+        <Paper elevation={6} style={{margin:"10px",padding:"15px", textAlign:"left"}} key={addition.id}>
+         Id:{addition.id}<br/>
+         Title:{addition.title}<br/>
+         Body:{addition.body}
+
         </Paper>
-    </Container>
-  );
+      ))
 }
 
 
+    </Paper>
 
 
+
+    </Container>
+  );
+}
