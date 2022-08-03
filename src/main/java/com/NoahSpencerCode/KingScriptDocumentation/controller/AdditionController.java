@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/addition")
+@CrossOrigin
 public class AdditionController {
     @Autowired
     private AdditionService additionService;
