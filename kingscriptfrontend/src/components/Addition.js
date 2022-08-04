@@ -4,7 +4,7 @@ import { Container ,Paper,Button} from '@mui/material';
 
 
 export default function Addition() {
-    const paperStyle={padding:'50px 20px', width:600,margin:"20px auto",backgroundColor: "rgb(30,38,45)"}
+    const paperStyle={padding:'50px 20px',margin:"20px auto",backgroundColor: "rgb(30,38,45)"}
     const[title,setTitle]=useState('')
     const[body,setBody]=useState('')
     const[additions,setAdditions]=useState([])
@@ -39,11 +39,12 @@ useEffect(()=>{
 
     <form noValidate autoComplete="off">
     
-      <TextField id="outlined-basic" label="Title" variant="outlined" fullWidth 
+      <TextField id="outlined-basic" label="Title" variant="outlined" fullWidth style={{margin: '10px 0'}}
       value={title}
       onChange={(e)=>setTitle(e.target.value)}
+      
       />
-      <TextField id="outlined-basic" label="Body" variant="outlined" fullWidth
+      <TextField id="outlined-basic" label="Body" variant="outlined" fullWidth style={{margin: '10px 0'}} multiline rows={10}
       value={body}
       onChange={(e)=>setBody(e.target.value)}
       />
@@ -59,7 +60,9 @@ useEffect(()=>{
         <Paper elevation={6} style={{margin:"10px",padding:"15px", textAlign:"left",backgroundColor: "rgb(30,38,45)"}} key={addition.id}>
          
          <h2>{addition.title}</h2>
-         <p>{addition.body}</p>
+         <div class="multiline colored">
+            {addition.body}
+        </div>
 
         </Paper>
       ))}

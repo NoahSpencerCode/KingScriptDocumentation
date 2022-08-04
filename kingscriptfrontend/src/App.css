@@ -53,6 +53,14 @@ p {
   color:#cfcfcf
 }
 
+.colored {
+  color:#cfcfcf
+}
+
 #outlined-basic {
   color: white;
+}
+
+.multiline {
+  white-space: pre-wrap;
 }
