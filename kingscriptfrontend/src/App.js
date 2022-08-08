@@ -5,6 +5,7 @@ import About from './components/About'
 import Documentation from './components/Documentation'
 import Forum from './components/Forum'
 import Addition from './components/Addition';
+import Footer from './components/Footer'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="Forum" element={<Forum />} />
         <Route path="Addition" element={<Addition />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
