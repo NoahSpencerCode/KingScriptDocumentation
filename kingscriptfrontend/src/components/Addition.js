@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Container ,Paper,Button} from '@mui/material';
+import Card from './Card'
 
 
 export default function Addition() {
@@ -57,14 +58,7 @@ useEffect(()=>{
     <h1>Documentation</h1>
 
     {additions.map(addition=>(
-        <Paper elevation={6} style={{margin:"10px",padding:"15px", textAlign:"left",backgroundColor: "rgb(30,38,45)"}} key={addition.id}>
-         
-         <h2>{addition.title}</h2>
-         <div class="multiline colored">
-            {addition.body}
-        </div>
-
-        </Paper>
+        <Card id={addition.id} title={addition.title} body={addition.body}/>
       ))}
 
 
