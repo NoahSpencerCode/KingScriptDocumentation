@@ -23,6 +23,14 @@ public class AdditionServiceImpl implements AdditionService {
     public List<Addition> getAllAdditions() {
         return additionRepository.findAll();
     }
+
+    public void delete(Integer id){
+        additionRepository.deleteById(id);
+    }
+
+    public Addition get(Integer id){
+        return additionRepository.findById(id).get();
+    }
 }
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container ,Paper} from '@mui/material';
-
+import ReactMarkdown from 'react-markdown'
+import CodeBlock from './CodeBlock';
 
 export default function Documentation() {
     const[additions,setAdditions]=useState([])
@@ -23,7 +24,8 @@ useEffect(()=>{
          
          <h2>{addition.title}</h2>
          <div class="multiline colored">
-            {addition.body}
+          <ReactMarkdown components={CodeBlock}>{addition.body}</ReactMarkdown>
+            
         </div>
 
         </Paper>
