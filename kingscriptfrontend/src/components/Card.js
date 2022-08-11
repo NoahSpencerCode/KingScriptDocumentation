@@ -9,15 +9,18 @@ export default function Card (props) {
 
 
     const handleClick=(e)=>{
-        e.preventDefault()
-        fetch(`http://localhost:8080/addition/${props.id}`,{
-          method:"DELETE",
-          headers:{"Content-Type":"application/json"},
-    
-      }).then(()=>{
-        console.log("Addition Deleted")
-        window.location.reload(false);
-      })
+
+        if(window.confirm('Are you sure you want to delete?')){
+            e.preventDefault()
+            fetch(`http://localhost:8080/addition/${props.id}`,{
+            method:"DELETE",
+            headers:{"Content-Type":"application/json"},
+        
+            }).then(()=>{
+                console.log("Addition Deleted")
+                window.location.reload(false);
+            })
+        }
     }
 
     return (
@@ -34,7 +37,7 @@ export default function Card (props) {
 
         <div>
 
-        <Link to='/Edit' state={{ Id: props.id, Title: props.title, Body: props.body}}><Button sx={{height:'40px', marginRight:'10px'}} color='secondary' variant="contained" >Edit</Button></Link>
+        <Link style={{textDecoration:'none'}} to='/Edit' state={{ Id: props.id, Title: props.title, Body: props.body}}><Button sx={{height:'40px', marginRight:'10px'}} color='secondary' variant="contained" >Edit</Button></Link>
         <Button sx={{height:'40px', backgroundColor:'red'}} color='secondary' variant="contained" onClick={handleClick}>Delete</Button>
         </div>
 
