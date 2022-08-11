@@ -1,5 +1,7 @@
 import React from "react";
 import { Paper, Button } from '@mui/material';
+import { Link } from 'react-router-dom'
+
 
 
 export default function Card (props) {
@@ -18,7 +20,7 @@ export default function Card (props) {
 
         <div>
 
-        <Button sx={{height:'40px', marginRight:'10px'}} color='secondary' variant="contained" href='/Documentation'>Edit</Button>
+        <Link to='/Edit' state={{ Id: props.id, Title: props.title, Body: props.body}}><Button sx={{height:'40px', marginRight:'10px'}} color='secondary' variant="contained" >Edit</Button></Link>
         <Button sx={{height:'40px', backgroundColor:'red'}} color='secondary' variant="contained" href='/Documentation'>Delete</Button>
         </div>
 
