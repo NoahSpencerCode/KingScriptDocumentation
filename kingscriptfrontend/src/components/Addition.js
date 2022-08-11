@@ -23,6 +23,8 @@ export default function Addition() {
 
   }).then(()=>{
     console.log("New Addition added")
+    window.location.reload(false);
+
   })
 }
 
